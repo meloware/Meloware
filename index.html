@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <title>Carlos Penaloza</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#123">
+    <meta name="author" content="Carlos Penaloza">
+    <meta name="description" content="Carlos Penaloza's Personal Web Page">
+
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Raleway:500italic,600italic,600,700,700italic,300italic,300,400,400italic,800,900'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600italic,700,900'
+          rel='stylesheet' type='text/css'>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+    <!--FontAwesome-->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!--Animate CSS-->
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+
+</head>
+
+<body>
+
+<!--Header-->
+<header class="header" id="home">
+
+</header>
+
+<!-- Contact -->
+
+
+<!-- End Contact -->
+
+<!-- Footer -->
+<footer class="footer">
+
+</footer>
+
+<!-- Manual lazy load -->
+<script>
+    'use strict';
+
+    function init() {
+        var imgDefer = document.getElementsByTagName('img');
+        for (var i = 0; i < imgDefer.length; i++) {
+            if (imgDefer[i].getAttribute('data-src')) {
+                imgDefer[i].setAttribute('src', imgDefer[i].getAttribute('data-src'));
+            }
+        }
+    }
+
+    window.onload = init;
+</script>
+
+<!--JS Libraries-->
+<script defer src="js/jquery.js"></script>
+<script defer src="js/bootstrap.min.js"></script>
+<script defer src="js/wow.min.js"></script>
+
+<!-- Custom JS -->
+<script defer src="js/custom.js"></script>
+
+</body>
+
+
+</html>
