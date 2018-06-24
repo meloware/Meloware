@@ -1,126 +1,38 @@
-/* global $ */
-/* global WOW */
+(function ($) {
+    "use strict";
 
-$('.navbar-nav>li>a').on('click', function () {
-    'use strict';
-    $('.navbar-collapse').collapse('hide');
-});
-
-/* Show and hide navbar after the main page */
-$(document).ready(function () {
-
-    'use strict';
-
-    $(window).scroll(function () {
-
-        'use strict';
-
-        if ($(window).scrollTop() < 500) {
-
-            $('.navbar').css({
-                'margin-top': '-100px',
-                'opacity': '0'
-            });
-            $('.navbar-default').css({
-                'background-color': 'rgba(21,46,71,0)'
-            });
-        }
-        else {
-            $('.navbar').css({
-                'margin-top': '0px',
-                'opacity': '1'
-            });
-            $('.navbar-default').css({
-                'visibility': 'visible',
-                'background-color': 'rgba(21,46,71,0.9)',
-                'border-color': '#132c44'
-            });
-
-        }
-
+    /*Preloader*/
+    $(window).preloader({
+        delay: 500
     });
 
-});
-
-//Active menu item on click
-$(document).ready(function () {
-
-    'use strict';
-
-    $('.navbar-nav li a').click(function () {
-        'use strict';
-
-        $('.navbar-nav li a').parent().removeClass("active");
-        $(this).parent().addClass("active");
+    // auto close navbar-collapse on click
+    $('.nav-item>[data-scroll]').on('click', function () {
+        $('.navbar-toggler:visible').click();
     });
 
-});
+    /*sticky navbar*/
+    $("#navbar-sticky").sticky({ topSpacing: 0 });
+    // transparent header fixed-top
+    $(window).on("scroll",function () {
+        var scroll = $(window).scrollTop();
 
-//Remove highlight active link
-$(document).ready(function () {
-
-    'use strict';
-    $("a").click(function () {
-        this.blur();
-    });
-
-});
-
-
-//Active menu item on scroll
-$(document).ready(function () {
-
-    'use strict';
-
-    $(window).scroll(function () {
-        'use strict';
-
-        $("section").each(function () {
-
-            'use strict';
-            var idCurrent = $(this).attr("id");
-            var height = $(this).outerHeight();
-            var grttop = $(this).offset().top - 70;
-
-            if ($(window).scrollTop() > grttop && $(window).scrollTop() < grttop + height) {
-                $(".navbar-nav li a[href='#" + idCurrent + "']").parent().addClass("active");
-            }
-            else {
-                $(".navbar-nav li a[href='#" + idCurrent + "']").parent().removeClass("active");
-                $(".navbar-nav li a[href='#home']").parent().removeClass("active");
-            }
-
-        });
-
-    });
-
-});
-
-//Add wow animations -> initialize
-$(document).ready(function () {
-
-    'use strict';
-
-    new WOW().init();
-
-});
-
-//Smooth scrolling
-$(document).ready(function () {
-
-    'use strict';
-
-    $('.nav-item, .contact-down, .about-down, #to-top').click(function () {
-        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-            var target = $(this.hash);
-            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-            if (target.length) {
-                $('html, body').animate({
-                    scrollTop: target.offset().top
-                }, 1000);
-                return false;
-            }
+        if (scroll >= 100) {
+            $("#navbar-fixed-top").addClass("sticky-active");
+        } else {
+            $("#navbar-fixed-top").removeClass("sticky-active");
         }
     });
 
-});
+    /*smooth scroll*/
+    smoothScroll.init({
+        selector: '[data-scroll]', // Selector for links (must be a class, ID, data attribute, or element tag)
+        speed: 800, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 70, // Integer. How far to offset the scrolling anchor location in pixels
+        callback: function (anchor, toggle) { } // Function to run after scrolling
+    });
+})(jQuery);
+
+
+
